@@ -73,4 +73,6 @@ dependencies {
 
     implementation deps.lifecycle.lifecycle_extensions
     implementation deps.lifecycle.viewmodel_ktx
+
+    implementation project(':Framework')
 }
