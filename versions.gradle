@@ -19,9 +19,15 @@ versions.logging_interceptor = "3.11.0"
 
 versions.rxjava = "3.0.0"
 versions.rxandroid = "3.0.0"
+versions.rxkotlin = "3.0.0"
 
 versions.lifecycle_extensions = "2.2.0"
 versions.lifecycle_viewmodel_ktx = "2.3.0"
+
+versions.junit = "4.13.2"
+versions.mockito_core = "2.28.2"
+versions.mockito_inline = "2.13.0"
+versions.core_testing = "2.0.0"
 
 ext.versions = versions
 
@@ -68,11 +74,19 @@ deps.retrofit = retrofit
 def rxjava = [:]
 rxjava.rxjava = "io.reactivex.rxjava3:rxjava:$versions.rxjava"
 rxjava.rxandroid = "io.reactivex.rxjava3:rxandroid:$versions.rxandroid"
+rxjava.rxkotlin = "io.reactivex.rxjava3:rxkotlin:$versions.rxkotlin"
 deps.rxjava = rxjava
 
 def lifecycle = [:]
 lifecycle.lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle_extensions"
 lifecycle.viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle_viewmodel_ktx"
 deps.lifecycle = lifecycle
+
+def test = [:]
+test.junit = "junit:junit:$versions.junit"
+test.mockito_core = "org.mockito:mockito-inline:$versions.mockito_core"
+test.mockito_inline = "org.mockito:mockito-core:$versions.mockito_inline"
+test.core_testing = "android.arch.core:core-testing:$versions.core_testing"
+deps.test = test
 
 ext.deps = deps

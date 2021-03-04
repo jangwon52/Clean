@@ -9,7 +9,7 @@ android {
     buildToolsVersion build_versions.build_tools
 
     defaultConfig {
-        applicationId "com.mongoose.startersample"
+        applicationId "com.mongoose.clean"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
@@ -19,8 +19,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+            shrinkResources true
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -70,9 +75,15 @@ dependencies {
 
     implementation deps.rxjava.rxjava
     implementation deps.rxjava.rxandroid
+    implementation deps.rxjava.rxkotlin
 
     implementation deps.lifecycle.lifecycle_extensions
     implementation deps.lifecycle.viewmodel_ktx
+
+    implementation deps.test.junit
+    implementation deps.test.mockito_core
+    implementation deps.test.mockito_inline
+    implementation deps.test.core_testing
 
     implementation project(':Framework')
 }

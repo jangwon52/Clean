@@ -2,17 +2,20 @@ package com.mongoose.clean
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.mongoose.clean.domain.usecase.GetUseCase
+import com.mongoose.clean.presentation.MainViewModel
 
 // Created by mongoose on 2021/02/23
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(
+    private val getUseCase: GetUseCase,
 ) : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
                 isAssignableFrom(MainViewModel::class.java) ->
-                    MainViewModel()
+                    MainViewModel(getUseCase)
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
