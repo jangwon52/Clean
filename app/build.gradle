@@ -15,17 +15,13 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        debug {
-            minifyEnabled true
-            shrinkResources true
-        }
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -80,10 +76,18 @@ dependencies {
     implementation deps.lifecycle.lifecycle_extensions
     implementation deps.lifecycle.viewmodel_ktx
 
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.converter_gson
+    implementation deps.retrofit.okhttp
+    implementation deps.retrofit.logging_interceptor
+    implementation deps.retrofit.rxjava_adapter
+
     implementation deps.test.junit
     implementation deps.test.mockito_core
     implementation deps.test.mockito_inline
     implementation deps.test.core_testing
+
+    implementation deps.multidex
 
     implementation project(':Framework')
 }
