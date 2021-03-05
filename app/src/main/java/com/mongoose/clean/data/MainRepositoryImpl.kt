@@ -1,6 +1,7 @@
 package com.mongoose.clean.data
 
 import com.mongoose.clean.data.model.MainDataModel
+import com.mongoose.clean.data.model.user.UserResponse
 import com.mongoose.clean.data.source.MainDataSourceInterface
 import com.mongoose.clean.domain.MainRepositoryInterface
 import io.reactivex.rxjava3.core.Observable
@@ -44,6 +45,24 @@ class MainRepositoryImpl(
                             ?: return@subscribeBy).exception)
                     },
                     onSuccess = { emitter.onNext(DataResult.Success(it)) }
+                )
+        }
+    }
+
+    override fun getUser(page: Int): Observable<DataResult<UserResponse>> {
+        return Observable.create { emitter ->
+            emitter.onNext(DataResult.Loading)
+
+            remoteDataSource.getUser(page)
+                .doFinally { emitter.onComplete() }
+                .subscribeBy(
+                    onError = {
+                        emitter.onError(DataResult.Error(it as? Exception
+                            ?: return@subscribeBy).exception)
+                    },
+                    onSuccess = {
+                        emitter.onNext(DataResult.Success(it))
+                    }
                 )
         }
     }

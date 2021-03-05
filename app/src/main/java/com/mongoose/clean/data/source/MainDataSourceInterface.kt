@@ -1,6 +1,7 @@
 package com.mongoose.clean.data.source
 
 import com.mongoose.clean.data.model.MainDataModel
+import com.mongoose.clean.data.model.user.UserResponse
 import io.reactivex.rxjava3.core.Single
 
 /**
@@ -12,4 +13,5 @@ import io.reactivex.rxjava3.core.Single
 
 interface MainDataSourceInterface {
     fun get(): Single<MainDataModel>
+    fun getUser(page: Int): Single<UserResponse>
 }
