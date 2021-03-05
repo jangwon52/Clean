@@ -16,6 +16,7 @@ versions.retrofit = "2.6.0"
 versions.converter_gson = "2.6.2"
 versions.ok_http = "3.11.0"
 versions.logging_interceptor = "3.11.0"
+versions.rxjava_adapter = "2.9.0"
 
 versions.rxjava = "3.0.0"
 versions.rxandroid = "3.0.0"
@@ -28,6 +29,8 @@ versions.junit = "4.13.2"
 versions.mockito_core = "2.28.2"
 versions.mockito_inline = "2.13.0"
 versions.core_testing = "2.0.0"
+
+versions.multidex = "2.0.1"
 
 ext.versions = versions
 
@@ -69,6 +72,7 @@ retrofit.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
 retrofit.converter_gson = "com.squareup.retrofit2:converter-gson:$versions.converter_gson"
 retrofit.okhttp = "com.squareup.okhttp3:okhttp:$versions.okhttp"
 retrofit.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.logging_interceptor"
+retrofit.rxjava_adapter = "com.squareup.retrofit2:adapter-rxjava3:$versions.rxjava_adapter"
 deps.retrofit = retrofit
 
 def rxjava = [:]
@@ -88,5 +92,9 @@ test.mockito_core = "org.mockito:mockito-inline:$versions.mockito_core"
 test.mockito_inline = "org.mockito:mockito-core:$versions.mockito_inline"
 test.core_testing = "android.arch.core:core-testing:$versions.core_testing"
 deps.test = test
+
+def multidex = [:]
+multidex.multidex = "androidx.multidex:multidex:$versions.multidex"
+deps.multidex
 
 ext.deps = deps
