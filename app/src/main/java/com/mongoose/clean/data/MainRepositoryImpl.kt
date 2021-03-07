@@ -1,7 +1,7 @@
 package com.mongoose.clean.data
 
 import com.mongoose.clean.data.model.MainDataModel
-import com.mongoose.clean.data.model.user.UserResponse
+import com.mongoose.clean.data.model.user.Result
 import com.mongoose.clean.data.source.MainDataSourceInterface
 import com.mongoose.clean.domain.MainRepositoryInterface
 import io.reactivex.rxjava3.core.Observable
@@ -27,8 +27,12 @@ class MainRepositoryImpl(
                     .doFinally { emitter.onComplete() }
                     .subscribeBy(
                         onError = {
-                            emitter.onError(DataResult.Error(it as? Exception
-                                ?: return@subscribeBy).exception)
+                            emitter.onError(
+                                DataResult.Error(
+                                    it as? Exception
+                                        ?: return@subscribeBy
+                                ).exception
+                            )
                         },
                         onSuccess = {
                             emitter.onNext(DataResult.Success(it))
@@ -41,15 +45,19 @@ class MainRepositoryImpl(
                 .doFinally { emitter.onComplete() }
                 .subscribeBy(
                     onError = {
-                        emitter.onError(DataResult.Error(it as? Exception
-                            ?: return@subscribeBy).exception)
+                        emitter.onError(
+                            DataResult.Error(
+                                it as? Exception
+                                    ?: return@subscribeBy
+                            ).exception
+                        )
                     },
                     onSuccess = { emitter.onNext(DataResult.Success(it)) }
                 )
         }
     }
 
-    override fun getUser(page: Int): Observable<DataResult<UserResponse>> {
+    override fun getUser(page: Int): Observable<DataResult<List<Result>>> {
         return Observable.create { emitter ->
             emitter.onNext(DataResult.Loading)
 
@@ -57,8 +65,12 @@ class MainRepositoryImpl(
                 .doFinally { emitter.onComplete() }
                 .subscribeBy(
                     onError = {
-                        emitter.onError(DataResult.Error(it as? Exception
-                            ?: return@subscribeBy).exception)
+                        emitter.onError(
+                            DataResult.Error(
+                                it as? Exception
+                                    ?: return@subscribeBy
+                            ).exception
+                        )
                     },
                     onSuccess = {
                         emitter.onNext(DataResult.Success(it))

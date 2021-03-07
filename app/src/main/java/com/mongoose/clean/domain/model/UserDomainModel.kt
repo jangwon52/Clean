@@ -1,6 +1,6 @@
 package com.mongoose.clean.domain.model
 
-import com.mongoose.clean.data.model.user.UserResponse
+import com.mongoose.clean.data.model.user.Result
 
 /**
  *  UserDomainModel.kt
@@ -11,10 +11,18 @@ import com.mongoose.clean.data.model.user.UserResponse
 
 data class UserDomainModel(
     val id: String,
+    val cell: String,
+    val email: String,
+    val name: String,
+    val thumbnail: String,
 ) {
     companion object {
-        fun mapFromDataModel(data: UserResponse) = UserDomainModel(
-            id = data.info.seed
+        fun mapFromDataModel(data: Result) = UserDomainModel(
+            id = data.id.value ?: "",
+            cell = data.cell,
+            email = data.email,
+            name = "${data.name.title ?: ""} ${data.name.first ?: ""} ${data.name.last ?: ""}",
+            thumbnail = data.picture.thumbnail
         )
     }
 }

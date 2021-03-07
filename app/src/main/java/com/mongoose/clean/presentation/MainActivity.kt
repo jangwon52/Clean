@@ -2,14 +2,12 @@ package com.mongoose.clean.presentation
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.mongoose.clean.R
 import com.mongoose.clean.ServiceLocator
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.mongoose.clean.databinding.ActivityMainBinding
+import com.mongoose.framework.BaseBindingActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val mainViewModel: MainViewModel by viewModels {
         ServiceLocator.getInstance().viewModelFactory
@@ -17,7 +15,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding.viewModel = mainViewModel
+        binding.lifecycleOwner = this
+        binding.rvUser.adapter = UserListAdapter()
 
         mainViewModel.get()
         mainViewModel.getUser()

@@ -16,11 +16,14 @@ import io.reactivex.rxjava3.core.Observable
 class GetUserUseCaseImpl(
     private val mainRepository: MainRepositoryInterface,
 ) : GetUserUseCase {
-    override fun invoke(page: Int): Observable<DataResult<UserDomainModel>> {
+    override fun invoke(page: Int): Observable<DataResult<List<UserDomainModel>>> {
         return mainRepository.getUser(page).map {
             when (it) {
                 is DataResult.Success -> {
-                    DataResult.Success(UserDomainModel.mapFromDataModel(it.data))
+                    val list = it.data.map { result ->
+                        UserDomainModel.mapFromDataModel(result)
+                    }
+                    DataResult.Success(list)
                 }
                 is DataResult.Loading -> {
                     DataResult.Loading

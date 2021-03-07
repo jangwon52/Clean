@@ -94,7 +94,6 @@ test.core_testing = "android.arch.core:core-testing:$versions.core_testing"
 deps.test = test
 
 def multidex = [:]
-multidex.multidex = "androidx.multidex:multidex:$versions.multidex"
-deps.multidex
+deps.multidex = "androidx.multidex:multidex:$versions.multidex"
 
 ext.deps = deps

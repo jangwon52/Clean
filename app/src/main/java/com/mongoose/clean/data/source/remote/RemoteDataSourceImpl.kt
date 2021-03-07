@@ -2,7 +2,7 @@ package com.mongoose.clean.data.source.remote
 
 import com.mongoose.clean.data.error.DataException
 import com.mongoose.clean.data.model.MainDataModel
-import com.mongoose.clean.data.model.user.UserResponse
+import com.mongoose.clean.data.model.user.Result
 import com.mongoose.clean.data.source.MainDataSourceInterface
 import io.reactivex.rxjava3.core.Single
 
@@ -21,11 +21,15 @@ class RemoteDataSourceImpl(private val api: UserApi) : MainDataSourceInterface {
         }
     }
 
-    override fun getUser(page: Int): Single<UserResponse> {
+    override fun getUser(page: Int): Single<List<Result>> {
         return Single.create { emitter ->
             api.getUsers(page)
                 .subscribe({ response ->
-                    emitter.onSuccess(response.body())
+                    if (response.body() == null) {
+                        emitter.onError(DataException.UnknownException("getUser"))
+                        return@subscribe
+                    }
+                    emitter.onSuccess(response.body()?.results)
                 }, {
                     emitter.onError(DataException.UnknownException("getUser"))
                 })

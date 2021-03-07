@@ -12,5 +12,5 @@ import io.reactivex.rxjava3.core.Observable
  */
 
 interface GetUserUseCase {
-    operator fun invoke(page: Int): Observable<DataResult<UserDomainModel>>
+    operator fun invoke(page: Int): Observable<DataResult<List<UserDomainModel>>>
 }

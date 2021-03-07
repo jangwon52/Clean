@@ -1,6 +1,10 @@
 package com.mongoose.clean.presentation
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.mongoose.clean.data.DataResult
+import com.mongoose.clean.domain.model.UserDomainModel
 import com.mongoose.clean.domain.usecase.GetUseCase
 import com.mongoose.clean.domain.usecase.GetUserUseCase
 import com.mongoose.framework.BaseViewModel
@@ -15,6 +19,9 @@ class MainViewModel(
     private val getUseCase: GetUseCase,
     private val getUserUseCase: GetUserUseCase,
 ) : BaseViewModel() {
+
+    private val _userList = MutableLiveData<List<UserDomainModel>>()
+    val userList: LiveData<List<UserDomainModel>> = _userList
 
     fun get() {
         getUseCase.invoke(false)
@@ -35,12 +42,21 @@ class MainViewModel(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onNext = {
-
-                },
+                onNext = ::handleOnNext,
                 onError = {
-
                 }
             ).addTo(disposeBag)
+    }
+
+    private fun handleOnNext(result: DataResult<List<UserDomainModel>>) {
+        when (result) {
+            is DataResult.Success -> {
+                _userList.value = result.data
+            }
+            is DataResult.Loading -> {
+            }
+            is DataResult.Error -> {
+            }
+        }
     }
 }

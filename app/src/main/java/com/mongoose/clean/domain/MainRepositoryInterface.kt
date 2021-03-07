@@ -2,7 +2,7 @@ package com.mongoose.clean.domain
 
 import com.mongoose.clean.data.DataResult
 import com.mongoose.clean.data.model.MainDataModel
-import com.mongoose.clean.data.model.user.UserResponse
+import com.mongoose.clean.data.model.user.Result
 import io.reactivex.rxjava3.core.Observable
 
 /**
@@ -14,5 +14,5 @@ import io.reactivex.rxjava3.core.Observable
 
 interface MainRepositoryInterface {
     fun get(needRefresh: Boolean): Observable<DataResult<MainDataModel>>
-    fun getUser(page: Int): Observable<DataResult<UserResponse>>
+    fun getUser(page: Int): Observable<DataResult<List<Result>>>
 }

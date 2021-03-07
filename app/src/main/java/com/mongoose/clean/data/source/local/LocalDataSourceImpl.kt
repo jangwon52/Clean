@@ -1,6 +1,7 @@
 package com.mongoose.clean.data.source.local
 
 import com.mongoose.clean.data.model.MainDataModel
+import com.mongoose.clean.data.model.user.Result
 import com.mongoose.clean.data.model.user.UserResponse
 import com.mongoose.clean.data.source.MainDataSourceInterface
 import io.reactivex.rxjava3.core.Single
@@ -18,7 +19,7 @@ class LocalDataSourceImpl : MainDataSourceInterface {
         return Single.just(MainDataModel("local"))
     }
 
-    override fun getUser(page: Int): Single<UserResponse> {
+    override fun getUser(page: Int): Single<List<Result>> {
         TODO("Not yet implemented")
     }
 }
