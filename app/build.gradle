@@ -92,5 +92,8 @@ dependencies {
     implementation deps.glide.glide
     implementation deps.glide.compiler
 
+    implementation deps.paging.paging
+    implementation deps.paging.rxjava
+
     implementation project(':Framework')
 }

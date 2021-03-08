@@ -34,6 +34,8 @@ versions.multidex = "2.0.1"
 
 versions.glide = "4.12.0"
 
+versions.paging = "3.0.0-beta01"
+
 ext.versions = versions
 
 def build_versions = [:]
@@ -101,5 +103,10 @@ def glide = [:]
 glide.glide = "com.github.bumptech.glide:glide:$versions.glide"
 glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
 deps.glide = glide
+
+def paging = [:]
+paging.paging = "androidx.paging:paging-runtime:$versions.paging"
+paging.rxjava = "androidx.paging:paging-rxjava3:$versions.paging"
+deps.paging = paging
 
 ext.deps = deps

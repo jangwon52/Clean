@@ -13,14 +13,29 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
         ServiceLocator.getInstance().viewModelFactory
     }
 
+    private val pagingAdapter by lazy {
+        UserListPagingAdapter()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.viewModel = mainViewModel
         binding.lifecycleOwner = this
-        binding.rvUser.adapter = UserListAdapter()
 
-        mainViewModel.get()
-        mainViewModel.getUser()
+        mainViewModel.getUserPaging()
+
+        setAdapter()
+        setObservers()
+    }
+
+    private fun setAdapter() {
+        binding.rvUser.adapter = pagingAdapter
+    }
+
+    private fun setObservers() {
+        mainViewModel.userPagingList.observe(this, {
+            pagingAdapter.submitData(lifecycle, it)
+        })
     }
 }

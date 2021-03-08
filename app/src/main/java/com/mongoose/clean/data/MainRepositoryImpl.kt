@@ -1,5 +1,9 @@
 package com.mongoose.clean.data
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.rxjava3.observable
 import com.mongoose.clean.data.model.MainDataModel
 import com.mongoose.clean.data.model.user.Result
 import com.mongoose.clean.data.source.MainDataSourceInterface
@@ -73,6 +77,35 @@ class MainRepositoryImpl(
                         )
                     },
                     onSuccess = {
+                        emitter.onNext(DataResult.Success(it))
+                    }
+                )
+        }
+    }
+
+    override fun getUserPaging(pageSize: Int): Observable<DataResult<PagingData<Result>>> {
+        return Observable.create { emitter ->
+            emitter.onNext(DataResult.Loading)
+
+            Pager(
+                config = PagingConfig(
+                    pageSize = pageSize
+                ),
+                pagingSourceFactory = {
+                    remoteDataSource.getUserPaging()
+                }
+            ).observable
+                .doFinally { emitter.onComplete() }
+                .subscribeBy(
+                    onError = {
+                        emitter.onError(
+                            DataResult.Error(
+                                it as? Exception
+                                    ?: return@subscribeBy
+                            ).exception
+                        )
+                    },
+                    onNext = {
                         emitter.onNext(DataResult.Success(it))
                     }
                 )

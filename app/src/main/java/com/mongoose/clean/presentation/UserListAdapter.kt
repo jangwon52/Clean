@@ -11,7 +11,7 @@ import com.mongoose.framework.BaseDiffCallbackAdapter
 // Created by mongoose on 2021/03/07
 
 class UserListAdapter :
-    BaseDiffCallbackAdapter<UserDomainModel, LayoutItemUserBinding>(DiffCallback()) {
+    BaseDiffCallbackAdapter<UserDomainModel, LayoutItemUserBinding>(COMPARATOR) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -33,19 +33,21 @@ class UserListAdapter :
         holder.bind(getItem(position))
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<UserDomainModel>() {
-        override fun areItemsTheSame(
-            oldItem: UserDomainModel,
-            newItem: UserDomainModel
-        ): Boolean {
-            return oldItem.cell == newItem.cell
-        }
+    companion object {
+        val COMPARATOR = object : DiffUtil.ItemCallback<UserDomainModel>() {
+            override fun areItemsTheSame(
+                oldItem: UserDomainModel,
+                newItem: UserDomainModel
+            ): Boolean {
+                return oldItem.cell == newItem.cell
+            }
 
-        override fun areContentsTheSame(
-            oldItem: UserDomainModel,
-            newItem: UserDomainModel
-        ): Boolean {
-            return oldItem == newItem
+            override fun areContentsTheSame(
+                oldItem: UserDomainModel,
+                newItem: UserDomainModel
+            ): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 }

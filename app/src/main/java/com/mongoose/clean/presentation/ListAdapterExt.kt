@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 @BindingAdapter("itemsWithListAdapter")
 fun <T, VH : RecyclerView.ViewHolder> setItemsWithListAdapter(
     recyclerView: RecyclerView,
-    items: List<T>?
+    items: List<T>?,
 ) {
     (recyclerView.adapter as? ListAdapter<T, VH>)?.let { adapter ->
         val newList = if (items == null || items.isEmpty()) null else ArrayList(items)

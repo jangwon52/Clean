@@ -1,5 +1,6 @@
 package com.mongoose.clean.data.source.local
 
+import androidx.paging.rxjava3.RxPagingSource
 import com.mongoose.clean.data.model.MainDataModel
 import com.mongoose.clean.data.model.user.Result
 import com.mongoose.clean.data.model.user.UserResponse
@@ -20,6 +21,10 @@ class LocalDataSourceImpl : MainDataSourceInterface {
     }
 
     override fun getUser(page: Int): Single<List<Result>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getUserPaging(): RxPagingSource<Int, Result> {
         TODO("Not yet implemented")
     }
 }

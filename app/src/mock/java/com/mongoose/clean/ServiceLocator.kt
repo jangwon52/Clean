@@ -6,6 +6,7 @@ import com.mongoose.clean.data.source.local.LocalDataSourceImpl
 import com.mongoose.clean.data.source.remote.RemoteDataSourceImpl
 import com.mongoose.clean.data.source.remote.UserApi
 import com.mongoose.clean.domain.usecase.GetUseCaseImpl
+import com.mongoose.clean.domain.usecase.GetUserPagingUseCaseImpl
 import com.mongoose.clean.domain.usecase.GetUserUseCaseImpl
 import com.mongoose.framework.network.RetrofitAdapter
 
@@ -17,7 +18,9 @@ open class ServiceLocator {
             LocalDataSourceImpl(),
             RemoteDataSourceImpl(api)
         )
-        ViewModelFactory(GetUseCaseImpl(mainRepository), GetUserUseCaseImpl(mainRepository))
+        ViewModelFactory(GetUseCaseImpl(mainRepository),
+            GetUserUseCaseImpl(mainRepository),
+            GetUserPagingUseCaseImpl(mainRepository))
     }
 
     val api by lazy {
