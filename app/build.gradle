@@ -89,5 +89,8 @@ dependencies {
 
     implementation deps.multidex
 
+    implementation deps.glide.glide
+    implementation deps.glide.compiler
+
     implementation project(':Framework')
 }
