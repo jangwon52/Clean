@@ -17,10 +17,10 @@ import io.reactivex.rxjava3.core.Single
 class LocalDataSourceImpl : MainDataSourceInterface {
 
     override fun get(): Single<MainDataModel> {
-        return Single.just(MainDataModel("local"))
+        TODO("Not yet implemented")
     }
 
-    override fun getUser(page: Int): Single<List<Result>> {
+    override fun getUser(page: Int?): Single<List<Result>> {
         TODO("Not yet implemented")
     }
 

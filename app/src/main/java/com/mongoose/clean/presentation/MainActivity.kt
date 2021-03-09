@@ -10,7 +10,7 @@ import com.mongoose.framework.BaseBindingActivity
 class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private val mainViewModel: MainViewModel by viewModels {
-        ServiceLocator.getInstance().viewModelFactory
+        ServiceLocator.getInstance(this).viewModelFactory
     }
 
     private val pagingAdapter by lazy {

@@ -17,7 +17,7 @@ interface UserApi {
     @GET("api/")
     fun getUsers(
         @Query(value = "page") page: Int? = 1,
-        @Query(value = "results") results: Int = 20,
+        @Query(value = "results") results: Int = 10,
         @Query(value = "seed") seed: String = "abc",
     ): Single<Response<UserResponse>>
 

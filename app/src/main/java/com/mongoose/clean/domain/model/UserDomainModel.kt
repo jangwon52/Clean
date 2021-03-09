@@ -1,6 +1,7 @@
 package com.mongoose.clean.domain.model
 
 import com.mongoose.clean.data.model.user.Result
+import com.mongoose.clean.data.model.user.UserEntity
 
 /**
  *  UserDomainModel.kt
@@ -17,12 +18,20 @@ data class UserDomainModel(
     val thumbnail: String,
 ) {
     companion object {
-        fun mapFromDataModel(data: Result) = UserDomainModel(
+        fun mapFromSpecModel(data: Result) = UserDomainModel(
             id = data.id.value ?: "",
             cell = data.cell,
             email = data.email,
             name = "${data.name.title ?: ""} ${data.name.first ?: ""} ${data.name.last ?: ""}",
             thumbnail = data.picture.thumbnail
+        )
+
+        fun mapFromDataModel(data: UserEntity) = UserDomainModel(
+            id = data.id,
+            cell = data.cell,
+            email = data.email,
+            name = data.name,
+            thumbnail = data.thumbnail
         )
     }
 }

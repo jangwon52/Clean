@@ -36,6 +36,8 @@ versions.glide = "4.12.0"
 
 versions.paging = "3.0.0-beta01"
 
+versions.room = "2.3.0-beta02"
+
 ext.versions = versions
 
 def build_versions = [:]
@@ -108,5 +110,12 @@ def paging = [:]
 paging.paging = "androidx.paging:paging-runtime:$versions.paging"
 paging.rxjava = "androidx.paging:paging-rxjava3:$versions.paging"
 deps.paging = paging
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.ktx = "androidx.room:room-ktx:$versions.room"
+room.rxjava = "androidx.room:room-rxjava3:$versions.room"
+deps.room = room
 
 ext.deps = deps

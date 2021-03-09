@@ -25,7 +25,7 @@ class RemoteDataSourceImpl(private val api: UserApi) : MainDataSourceInterface {
         }
     }
 
-    override fun getUser(page: Int): Single<List<Result>> {
+    override fun getUser(page: Int?): Single<List<Result>> {
         return Single.create { emitter ->
             api.getUsers(page)
                 .subscribe({ response ->

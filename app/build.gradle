@@ -95,5 +95,10 @@ dependencies {
     implementation deps.paging.paging
     implementation deps.paging.rxjava
 
+    kapt deps.room.compiler
+    implementation deps.room.runtime
+    implementation deps.room.ktx
+    implementation deps.room.rxjava
+
     implementation project(':Framework')
 }
