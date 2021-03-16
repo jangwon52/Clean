@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.mongoose.clean.data.DataResult
 import com.mongoose.clean.data.model.MainDataModel
 import com.mongoose.clean.data.model.user.Result
+import com.mongoose.clean.data.model.user.UserEntity
 import io.reactivex.rxjava3.core.Observable
 
 /**
@@ -16,5 +17,5 @@ import io.reactivex.rxjava3.core.Observable
 interface MainRepositoryInterface {
     fun get(needRefresh: Boolean): Observable<DataResult<MainDataModel>>
     fun getUser(page: Int): Observable<DataResult<List<Result>>>
-    fun getUserPaging(pageSize: Int): Observable<DataResult<PagingData<Result>>>
+    fun getUserPaging(pageSize: Int): Observable<DataResult<PagingData<UserEntity>>>
 }

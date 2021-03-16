@@ -14,6 +14,6 @@ import io.reactivex.rxjava3.core.Single
 
 interface MainDataSourceInterface {
     fun get(): Single<MainDataModel>
-    fun getUser(page: Int): Single<List<Result>>
+    fun getUser(page: Int?): Single<List<Result>>
     fun getUserPaging(): RxPagingSource<Int, Result>
 }

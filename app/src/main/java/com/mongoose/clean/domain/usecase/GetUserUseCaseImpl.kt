@@ -21,7 +21,7 @@ class GetUserUseCaseImpl(
             when (it) {
                 is DataResult.Success -> {
                     val list = it.data.map { result ->
-                        UserDomainModel.mapFromDataModel(result)
+                        UserDomainModel.mapFromSpecModel(result)
                     }
                     DataResult.Success(list)
                 }
